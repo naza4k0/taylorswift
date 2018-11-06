@@ -29,3 +29,10 @@ updater.start_polling()
 
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
+
+
+
+
+
+
+# пасхалка назар чувырдло
