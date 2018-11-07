@@ -33,3 +33,23 @@ class Pyre():
         
         self.pyre.child("users").child("scores").update({a : av1})
         self.pyre.child("users").child("scores").update({b : bv1})
+
+    def name(self, a):
+        return self.pyre.child("users").child("names").child(a).get().val()
+
+    def photo(self, a):
+        return self.pyre.child("users").child("photos").child(a).get().val()
+    
+    def rating(self):
+        data = []
+        for i in range(15):
+            data.append(self.pyre.child("users").child("scores").child(i).get().val())
+        maxim = []
+        for i in range(5):
+            a = max(data)
+            b = data.index(a)
+            data[b] = 0
+            maxim.append(b)
+        return maxim
+
+
