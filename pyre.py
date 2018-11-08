@@ -42,7 +42,7 @@ class Pyre():
     
     def rating(self):
         data = []
-        for i in range(15):
+        for i in range(self.pyre.child("users").child("number").child(0).get().val()):
             data.append(self.pyre.child("users").child("scores").child(i).get().val())
         maxim = []
         for i in range(5):
@@ -52,4 +52,31 @@ class Pyre():
             maxim.append(b)
         return maxim
 
+    def adminka1(self, a):
+        c = self.pyre.child("users").child("number").child(0).get().val()
+        self.pyre.child("users").child("names").child(c).set(a)
+       
+    def adminka2(self, a):
+        c = self.pyre.child("users").child("number").child(0).get().val()
+        self.pyre.child("users").child("scores").child(c).set(1000)
+        self.pyre.child("users").child("photos").child(c).set(a)
+        self.pyre.child("users").child("number").update({0: c+1})
+        
+    def num_get(self):
+        return self.pyre.child("users").child("number").child(0).get().val()
 
+    def updater(self):
+        for i in range(self.pyre.child("users").child("number").child(0).get().val()):
+            self.pyre.child("users").child("scores").update({i: 1000})
+
+    def admin_rating(self):
+        data = []
+        for i in range(self.pyre.child("users").child("number").child(0).get().val()):
+            data.append(self.pyre.child("users").child("scores").child(i).get().val())
+        maxim = []
+        for i in range(self.pyre.child("users").child("number").child(0).get().val()):
+            a = max(data)
+            b = data.index(a)
+            data[b] = 0
+            maxim.append(b)
+        return maxim
