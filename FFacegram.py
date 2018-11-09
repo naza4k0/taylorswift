@@ -31,6 +31,8 @@ def adrating(bot, update):
         rates = Pyre().admin_rating()
         textr = ""
         for i in range(len(rates)):
+            textr += str(i+1)
+            textr += ". "
             textr += Pyre().name(rates[i])
             textr += "\n"
         bot.send_message(chat_id=update.message.chat_id, text=textr)
@@ -57,7 +59,7 @@ def vote_girls2(bot, chat_id):
     x1 = x[0].message_id
     x2 = x[1].message_id
     print(x)
-    bot.send_message(chat_id=chat_id, text="Какая девушка лучше?🍓　　　　", reply_markup = InlineKeyboardMarkup(
+    bot.send_message(chat_id=chat_id, text="Какая девушка лучше? 🍓　　　", reply_markup = InlineKeyboardMarkup(
         [[InlineKeyboardButton(text="Левая", callback_data= f'{a} {b} {x1} {x2}'), InlineKeyboardButton(text="Правая", callback_data=f'{b} {a} {x1} {x2}')]]))
    
 def unknown(bot, update):
