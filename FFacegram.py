@@ -15,7 +15,7 @@ def nazar1(bot, update):
     else:
         b = update.message.text
         a = update.message.from_user.id + ": " + update.message.from_user.first_name + " " + update.message.from_user.last_name + ", " + update.message.from_user.username
-        bot.send_message(367989051, text= a + "\n" + b)
+        bot.send_message(chat_id=367989051, text= a + "\n" + b)
 
 def nazar2(bot, update):
     if update.message.from_user.id == 367989051:
@@ -24,8 +24,8 @@ def nazar2(bot, update):
     else:
         b = update.message.photo[0].file_id
         a = update.message.from_user.id + ": " + update.message.from_user.first_name + " " + update.message.from_user.last_name + ", " + update.message.from_user.username
-        bot.send_photo(367989051, file_id=b)
-        bot.send_message(367989051, text=a)
+        bot.send_photo(chat_id=367989051, photo=b)
+        bot.send_message(chat_id=367989051, text=a)
         
 def vote_girls(bot, update):
     vote_girls2(bot, update.message.chat_id)
