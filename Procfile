@@ -1,1 +1,1 @@
-web: python FFacegram.py
+bot: python FFacegram.py
