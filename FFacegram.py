@@ -15,7 +15,7 @@ def nazar1(bot, update):
     else:
         b = update.message.text
         xstr = lambda s: s or ""
-        a = str(update.message.from_user.id) + ": " + xstr(update.message.from_user.first_name) + " " + xstr(update.message.from_user.last_name) + ", " + xstr(update.message.from_user.username)
+        a = str(update.message.from_user.id) + ": " + xstr(update.message.from_user.first_name) + " " + xstr(update.message.from_user.last_name) + " " + xstr(update.message.from_user.username)
         bot.send_message(chat_id=367989051, text= a + "\n" + b)
 
 def nazar2(bot, update):
@@ -25,7 +25,7 @@ def nazar2(bot, update):
     else:
         b = update.message.photo[0].file_id
         xstr = lambda s: s or ""
-        a = str(update.message.from_user.id) + ": " + xstr(update.message.from_user.first_name) + " " + xstr(update.message.from_user.last_name) + ", " + xstr(update.message.from_user.username)
+        a = str(update.message.from_user.id) + ": " + xstr(update.message.from_user.first_name) + " " + xstr(update.message.from_user.last_name) + " " + xstr(update.message.from_user.username)
         bot.send_photo(chat_id=367989051, photo=b)
         bot.send_message(chat_id=367989051, text=a)
         
