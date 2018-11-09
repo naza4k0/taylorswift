@@ -14,7 +14,7 @@ def nazar1(bot, update):
         Pyre().adminka1(b)
     else:
         b = update.message.text
-        a = update.message.from_user.id + ": " + update.message.from_user.first_name + " " + update.message.from_user.last_name + ", " + update.message.from_user.username
+        a = str(update.message.from_user.id) + ": " + update.message.from_user.first_name + " " + update.message.from_user.last_name + ", " + update.message.from_user.username
         bot.send_message(chat_id=367989051, text= a + "\n" + b)
 
 def nazar2(bot, update):
@@ -23,7 +23,7 @@ def nazar2(bot, update):
         Pyre().adminka2(b)
     else:
         b = update.message.photo[0].file_id
-        a = update.message.from_user.id + ": " + update.message.from_user.first_name + " " + update.message.from_user.last_name + ", " + update.message.from_user.username
+        a = str(update.message.from_user.id) + ": " + update.message.from_user.first_name + " " + update.message.from_user.last_name + ", " + update.message.from_user.username
         bot.send_photo(chat_id=367989051, photo=b)
         bot.send_message(chat_id=367989051, text=a)
         
