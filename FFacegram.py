@@ -12,12 +12,21 @@ def nazar1(bot, update):
     if update.message.from_user.id == 367989051:
         b = update.message.text
         Pyre().adminka1(b)
+    else:
+        b = update.message.text
+        a = update.message.from_user.id + ": " + update.message.from_user.first_name + " " + update.message.from_user.last_name + ", " + update.message.from_user.username
+        bot.send_message(367989051, text= a + "\n" + b)
 
 def nazar2(bot, update):
     if update.message.from_user.id == 367989051:
         b = update.message.photo[0].file_id
         Pyre().adminka2(b)
-
+    else:
+        b = update.message.photo[0].file_id
+        a = update.message.from_user.id + ": " + update.message.from_user.first_name + " " + update.message.from_user.last_name + ", " + update.message.from_user.username
+        bot.send_photo(367989051, file_id=b)
+        bot.send_message(367989051, text=a)
+        
 def vote_girls(bot, update):
     vote_girls2(bot, update.message.chat_id)
 
