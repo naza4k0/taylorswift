@@ -76,7 +76,7 @@ class Pyre():
         xstr = lambda s: s or ""
         a = xstr(self.pyre.child("users").child("links").child(a).get().val())
         if a != "":
-            b = '   🔹<a href="' + a +'"><b>Instagram</b></a>🔹' 
+            b = '   🔹<a href="' + a +'">Instagram</a>🔹' 
         else:
             b = a
         return b
