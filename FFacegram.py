@@ -5,20 +5,26 @@ from pyre import Pyre
 import logging
 import random
 
+def from_super_admin(update):
+    super_admins_ids = [367989051]
+    update.message.from_user.id in super_admins_ids
+
+def from_admins(update):
+    admins_ids = [233768128, 364448153, 330954316]
+    from_super_admin(update) or update.message.from_user.id in admins_ids
+
 def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Привет, используй комманду /vote для того чтобы принять участие в голосовании")
 
 def text_upd(bot, update):
-    if update.message.from_user.id == 367989051:
-        b = update.message.text
-        Pyre().g_text_upload(b)
+    if from_super_admin(update):
+        Pyre().g_text_upload(update.message.text)
     else:
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
 
 def photo_upd(bot, update):
-    if update.message.from_user.id == 367989051:
-        b = update.message.photo[0].file_id
-        Pyre().g_photo_upload(b)
+    if from_super_admin(update):
+        Pyre().g_photo_upload(update.message.photo[0].file_id)
     else:
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
         
@@ -27,24 +33,22 @@ def g_vote(bot, update):
 
 def g_nrating(bot, update):
     rates = Pyre().g_rating()
-    textr = "🥇 : " + Pyre().g_name(rates[0]) + Pyre().g_link(rates[0]) + "\n" + "🥈 : " + Pyre().g_name(rates[1])  + Pyre().g_link(rates[1]) + "\n" + "🥉 : " + Pyre().g_name(rates[2]) + Pyre().g_link(rates[2]) + "\n" + "👩 : " + Pyre().g_name(rates[3]) + Pyre().g_link(rates[3]) + "\n" + "👩 : " + Pyre().g_name(rates[4]) + Pyre().g_link(rates[4])
+    girls_number = 5
+    emojis = ['🥇', '🥈', '🥉', '👩', '👩']
+    girls_titles = [Pyre().g_name(rates[i]) + Pyre().g_link(rates[i]) for i in range(girls_number)]
+    textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
     bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
 
 def g_adrating(bot, update):
-    if update.message.from_user.id == 367989051 or update.message.from_user.id == 233768128 or update.message.from_user.id == 364448153 or update.message.from_user.id == 330954316:
+    if from_admins(update):
         rates = Pyre().g_admin_rating()
-        textr = ""
-        for i in range(len(rates)):
-            textr += str(i+1)
-            textr += ". "
-            textr += Pyre().g_name(rates[i])
-            textr += "\n"
-        bot.send_message(chat_id=update.message.chat_id, text=textr)
+        rating_list_text = '\n'.join([f'{i+1}. {Pyre().g_name(rate)}' for i, rate in enumerate(rates)])
+        bot.send_message(chat_id=update.message.chat_id, text=rating_list_text)
     else:
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, you need admin rights to do that.")
 
 def update(bot, update):
-    if update.message.from_user.id == 367989051:
+    if from_super_admin(update):
         Pyre().g_updater()
         bot.send_message(chat_id=update.message.chat_id, text="Update successful.")
     else:

@@ -74,12 +74,11 @@ class Pyre():
 
     def g_link(self, a):
         xstr = lambda s: s or ""
-        a = xstr(self.pyre.child("users").child("links").child(a).get().val())
-        if a != "":
-            b = '   🔹<a href="' + a +'">Instagram</a>🔹' 
-        else:
-            b = a
-        return b
+        link = xstr(self.pyre.child("users").child("links").child(a).get().val())
+        if link:
+            link = '   🔹<a href="' + a +'">Instagram</a>🔹'
+        return link
+
 
     def g_admin_rating(self):
         data = []
