@@ -7,11 +7,11 @@ import random
 
 def from_super_admin(update):
     super_admins_ids = [367989051]
-    update.message.from_user.id in super_admins_ids
+    return (update.message.from_user.id in super_admins_ids)
 
 def from_admins(update):
-    admins_ids = [367989051, 233768128, 364448153, 330954316]
-    from_super_admin(update) or update.message.from_user.id in admins_ids
+    admins_ids = [233768128, 364448153, 330954316]
+    return (from_super_admin(update) or (update.message.from_user.id in admins_ids))
 
 def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Привет, используй комманду /vote для того чтобы принять участие в голосовании")
