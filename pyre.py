@@ -21,7 +21,7 @@ class Pyre():
         self._firebase = pyrebase.initialize_app(self._config)
         self.pyre = self._firebase.database()
 
-    def increment(self, a, b):
+    def g_round(self, a, b):
         av = self.pyre.child("users").child("scores").child(a).get().val()
         bv = self.pyre.child("users").child("scores").child(b).get().val()
 
@@ -34,13 +34,13 @@ class Pyre():
         self.pyre.child("users").child("scores").update({a : av1})
         self.pyre.child("users").child("scores").update({b : bv1})
 
-    def name(self, a):
+    def g_name(self, a):
         return self.pyre.child("users").child("names").child(a).get().val()
 
-    def photo(self, a):
+    def g_photo(self, a):
         return self.pyre.child("users").child("photos").child(a).get().val()
     
-    def rating(self):
+    def g_rating(self):
         data = []
         for i in range(self.pyre.child("users").child("number").child(0).get().val()):
             data.append(self.pyre.child("users").child("scores").child(i).get().val())
@@ -52,24 +52,24 @@ class Pyre():
             maxim.append(b)
         return maxim
 
-    def adminka1(self, a):
+    def g_text_upload(self, a):
         c = self.pyre.child("users").child("number").child(0).get().val()
         self.pyre.child("users").child("names").child(c).set(a)
        
-    def adminka2(self, a):
+    def g_photo_upload(self, a):
         c = self.pyre.child("users").child("number").child(0).get().val()
         self.pyre.child("users").child("scores").child(c).set(1000)
         self.pyre.child("users").child("photos").child(c).set(a)
         self.pyre.child("users").child("number").update({0: c+1})
-        
-    def num_get(self):
+   
+    def g_number(self):
         return self.pyre.child("users").child("number").child(0).get().val()
 
-    def updater(self):
+    def g_updater(self):
         for i in range(self.pyre.child("users").child("number").child(0).get().val()):
             self.pyre.child("users").child("scores").update({i: 1000})
 
-    def admin_rating(self):
+    def g_admin_rating(self):
         data = []
         for i in range(self.pyre.child("users").child("number").child(0).get().val()):
             data.append(self.pyre.child("users").child("scores").child(i).get().val())
