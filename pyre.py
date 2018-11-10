@@ -76,10 +76,10 @@ class Pyre():
         xstr = lambda s: s or ""
         a = xstr(self.pyre.child("users").child("links").child(a).get().val())
         if a != "":
-            b = "   🔹[Instagram](" + a + ")🔹" 
+            b = '   🔹<a href="' + a +'"><b>Instagram</b></a>🔹' 
         else:
             b = a
-        return a
+        return b
 
     def g_admin_rating(self):
         data = []
