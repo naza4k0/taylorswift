@@ -10,7 +10,7 @@ def from_super_admin(update):
     update.message.from_user.id in super_admins_ids
 
 def from_admins(update):
-    admins_ids = [233768128, 364448153, 330954316]
+    admins_ids = [367989051, 233768128, 364448153, 330954316]
     from_super_admin(update) or update.message.from_user.id in admins_ids
 
 def start(bot, update):
