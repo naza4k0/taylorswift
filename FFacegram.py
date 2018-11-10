@@ -27,7 +27,7 @@ def g_vote(bot, update):
 
 def g_nrating(bot, update):
     rates = Pyre().g_rating()
-    textr = "🥇 : " + Pyre().name(rates[0]) + "\n" + "🥈 : " + Pyre().name(rates[1]) + "\n" + "🥉 : " + Pyre().name(rates[2]) + "\n" + "👩 : " + Pyre().name(rates[3]) + "\n" + "👩 : " + Pyre().name(rates[4])
+    textr = "🥇 : " + Pyre().g_name(rates[0]) + "\n" + "🥈 : " + Pyre().g_name(rates[1]) + "\n" + "🥉 : " + Pyre().g_name(rates[2]) + "\n" + "👩 : " + Pyre().g_name(rates[3]) + "\n" + "👩 : " + Pyre().g_name(rates[4])
     bot.send_message(chat_id=update.message.chat_id, text=textr)
 
 def g_adrating(bot, update):
