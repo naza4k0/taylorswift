@@ -27,8 +27,8 @@ def g_vote(bot, update):
 
 def g_nrating(bot, update):
     rates = Pyre().g_rating()
-    textr = "🥇 : " + Pyre().g_name(rates[0]) + "\n" + "🥈 : " + Pyre().g_name(rates[1]) + "\n" + "🥉 : " + Pyre().g_name(rates[2]) + "\n" + "👩 : " + Pyre().g_name(rates[3]) + "\n" + "👩 : " + Pyre().g_name(rates[4])
-    bot.send_message(chat_id=update.message.chat_id, text=textr)
+    textr = "🥇 : " + Pyre().g_name(rates[0]) + "   [Instagram](" + Pyre().g_link(rates[0]) +")" + "\n" + "🥈 : " + Pyre().g_name(rates[1])  + "   [Instagram](" + Pyre().g_link(rates[1]) +")" + "\n" + "🥉 : " + Pyre().g_name(rates[2]) + "   [Instagram](" + Pyre().g_link(rates[2]) +")" + "\n" + "👩 : " + Pyre().g_name(rates[3]) + "   [Instagram](" + Pyre().g_link(rates[3]) +")" + "\n" + "👩 : " + Pyre().g_name(rates[4]) + "   [Instagram](" + Pyre().g_link(rates[0]) +")"
+    bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="Markdown")
 
 def g_adrating(bot, update):
     if update.message.from_user.id == 367989051 or update.message.from_user.id == 233768128 or update.message.from_user.id == 364448153 or update.message.from_user.id == 330954316:
@@ -54,7 +54,7 @@ def g_vote2(bot, chat_id):
     a=0
     b=0
 
-    while a==b:
+    while a==b or abs(Pyre().g_score(a)-Pyre().g_score(b))>=100:
        a=random.randint(0,Pyre().g_number()-1)
        b=random.randint(0,Pyre().g_number()-1)
 

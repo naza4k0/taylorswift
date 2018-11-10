@@ -65,9 +65,16 @@ class Pyre():
     def g_number(self):
         return self.pyre.child("users").child("number").child(0).get().val()
 
+    def g_score(self, a):
+        return self.pyre.child("users").child("scores").child(a).get().val()
+
     def g_updater(self):
         for i in range(self.pyre.child("users").child("number").child(0).get().val()):
             self.pyre.child("users").child("scores").update({i: 1000})
+
+    def g_link(self, a):
+        xstr = lambda s: s or ""
+        return xstr(self.pyre.child("users").child("links").child(a).get().val())
 
     def g_admin_rating(self):
         data = []
