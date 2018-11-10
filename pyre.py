@@ -34,18 +34,18 @@ class Pyre():
         self.pyre.child("users").child("scores").update({a : av1})
         self.pyre.child("users").child("scores").update({b : bv1})
 
-    def g_name(self, a):
-        return self.pyre.child("users").child("names").child(a).get().val()
-
     def g_photo(self, a):
         return self.pyre.child("users").child("photos").child(a).get().val()
+
+    def g_name(self, a):
+        return self.pyre.child("users").child("names").child(a).get().val()
     
     def g_rating(self):
         data = []
         for i in range(self.pyre.child("users").child("number").child(0).get().val()):
             data.append(self.pyre.child("users").child("scores").child(i).get().val())
         maxim = []
-        for i in range(10):
+        for i in range(5):
             a = max(data)
             b = data.index(a)
             data[b] = 0
@@ -75,10 +75,11 @@ class Pyre():
     def g_link(self, a):
         xstr = lambda s: s or ""
         link = xstr(self.pyre.child("users").child("links").child(a).get().val())
+        c = self.pyre.child("users").child("names").child(a).get().val()
         if link:
-            b = '   🔹<a href="' + link +'">Instagram</a>🔹'
+            b = '<a href="' + link +'">' + c + '</a>'
         else:
-            b = link
+            b = c
         return b
 
 

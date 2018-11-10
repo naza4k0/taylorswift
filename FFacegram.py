@@ -33,9 +33,9 @@ def g_vote(bot, update):
 
 def g_nrating(bot, update):
     rates = Pyre().g_rating()
-    girls_number = 10
-    emojis = ['🥇', '🥈', '🥉', '💛', '💛', '💚', '💚', '💚', '💚', '💚']
-    girls_titles = [Pyre().g_name(rates[i]) + Pyre().g_link(rates[i]) for i in range(girls_number)]
+    girls_number = 5
+    emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
+    girls_titles = [Pyre().g_link(rates[i]) for i in range(girls_number)]
     textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
     bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
 
