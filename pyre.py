@@ -45,7 +45,7 @@ class Pyre():
         for i in range(self.pyre.child("users").child("number").child(0).get().val()):
             data.append(self.pyre.child("users").child("scores").child(i).get().val())
         maxim = []
-        for i in range(5):
+        for i in range(10):
             a = max(data)
             b = data.index(a)
             data[b] = 0
