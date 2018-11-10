@@ -73,7 +73,7 @@ class Pyre():
             self.pyre.child("users").child("scores").update({i: 1000})
 
     def g_link(self, a):
-        xstr = lambda s: "   [Instagram](" + s ")" or ""
+        xstr = lambda s: ("   🔹[Instagram](" + s ")🔹") or ""
         return xstr(self.pyre.child("users").child("links").child(a).get().val())
 
     def g_admin_rating(self):
