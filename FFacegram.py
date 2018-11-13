@@ -89,7 +89,9 @@ def handle_query(bot, update):
     bot.delete_message(c,x1)
     bot.delete_message(c,x2)
     update.callback_query.message.delete()
+    Pyre().reg_check(c)
     Pyre().g_round(a, b)
+    Pyre().g1_round(a, b, c)
     g_vote2(bot, c)
     
 updater = Updater(token='757304961:AAFFLGinPle1bE5Arq12SL2mFiGj_DL849E')

@@ -34,6 +34,19 @@ class Pyre():
         self.pyre.child("users").child("scores").update({a : av1})
         self.pyre.child("users").child("scores").update({b : bv1})
 
+    def g1_round(self, a, b, c):
+        av = self.pyre.child("id_g").child(c).child(a).get().val()
+        bv = self.pyre.child("id_g").child(c).child(b).get().val()
+
+        e_a = 1/(1+10**((bv-av)/400))
+        e_b = 1/(1+10**((av-bv)/400))
+
+        av1 = av + 10*(1-e_a) 
+        bv1 = bv - 10*e_b
+        
+        self.pyre.child("id_g").child(c).update({a : av1})
+        self.pyre.child("id_g").child(c).update({b : bv1})
+
     def g_photo(self, a):
         return self.pyre.child("users").child("photos").child(a).get().val()
 
@@ -70,11 +83,11 @@ class Pyre():
        
     def reg_check(self, a):
         xstr = lambda s: s or ""
-        a = xstr(self.pyre.child("id_g").child("reg").child(a).get().val())
-        if a == "":
+        b = xstr(self.pyre.child("id_g").child("reg").child(a).get().val())
+        if b == "":
             for i in range(self.pyre.child("users").child("number").child(0).get().val()):
                 self.pyre.child("id_g").child(a).child(i).set(1000)
-            self.pyre.child("id_g").child("reg").update({a: "1"})
+            self.pyre.child("id_g").child("reg").child(a).set(1)
 
     def g_photo_upload(self, a):
         c = self.pyre.child("users").child("number").child(0).get().val()
