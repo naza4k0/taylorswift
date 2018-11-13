@@ -94,8 +94,8 @@ class Pyre():
         c = self.pyre.child("musers").child("number").child(0).get().val()
         self.pyre.child("musers").child("scores").child(c).set(1000)
         self.pyre.child("musers").child("photos").child(c).set(a)
-        for i in self.pyre.child("mid_g").child("reg").shallow().get():
-            self.pyre.child("mid_g").child(i).update({c: 1000})
+        for i in self.pyre.child("mid_g").child("reg").get().each():
+            self.pyre.child("mid_g").child(i).update({i.key(): 1000})
         self.pyre.child("musers").child("number").update({0: c+1})
 
     def g_number(self):
