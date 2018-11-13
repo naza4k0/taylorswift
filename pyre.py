@@ -82,13 +82,15 @@ class Pyre():
         c = self.pyre.child("musers").child("number").child(0).get().val()
         self.pyre.child("musers").child("names").child(c).set(a)
        
-    def reg_check(self, a):
+    def reg_check(self, a, b, c, d):
         xstr = lambda s: s or ""
         b = xstr(self.pyre.child("id_g").child("reg").child(a).get().val())
         if b == "":
             for i in range(self.pyre.child("users").child("number").child(0).get().val()):
                 self.pyre.child("id_g").child(a).child(i).set(1000)
-            self.pyre.child("id_g").child("reg").child(a).set(1)
+            self.pyre.child("mid_g").child("reg").child(a).set(b + " " + c + " ")
+        if b == 1:
+            self.pyre.child("mid_g").child("reg").child(a).set(b + " " + c + " ")
 
     def g_photo_upload(self, a):
         c = self.pyre.child("musers").child("number").child(0).get().val()
@@ -183,13 +185,15 @@ class Pyre():
             maxim.append(b)
         return maxim
 
-    def mreg_check(self, a):
+    def mreg_check(self, a, b, c, d):
         xstr = lambda s: s or ""
         b = xstr(self.pyre.child("mid_g").child("reg").child(a).get().val())
         if b == "":
             for i in range(self.pyre.child("musers").child("number").child(0).get().val()):
                 self.pyre.child("mid_g").child(a).child(i).set(1000)
-            self.pyre.child("mid_g").child("reg").child(a).set(1)
+            self.pyre.child("mid_g").child("reg").child(a).set(b + " " + c + " ")
+        if b == 1:
+            self.pyre.child("mid_g").child("reg").child(a).set(b + " " + c + " ")
 
     def m_number(self):
         return self.pyre.child("musers").child("number").child(0).get().val()

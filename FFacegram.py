@@ -51,7 +51,11 @@ def m_nrating(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
 
 def g_idrating(bot, update):
-    Pyre().reg_check(update.message.chat_id)
+    xstr = lambda s: s or ""
+    e = xstr(update.callback_query.message.from_user.first_name)
+    f = xstr(update.callback_query.message.from_user.last_name)
+    g = xstr(update.callback_query.message.from_user.username)
+    Pyre().reg_check(update.message.chat_id, e, f, g)
     rates = Pyre().gid_rating(update.message.chat_id)
     girls_number = 5
     emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
@@ -60,7 +64,11 @@ def g_idrating(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
 
 def m_idrating(bot, update):
-    Pyre().mreg_check(update.message.chat_id)
+    xstr = lambda s: s or ""
+    e = xstr(update.callback_query.message.from_user.first_name)
+    f = xstr(update.callback_query.message.from_user.last_name)
+    g = xstr(update.callback_query.message.from_user.username)
+    Pyre().reg_check(update.message.chat_id, e, f, g)
     rates = Pyre().mid_rating(update.message.chat_id)
     men_number = 5
     emojis = ['🥇', '🥈', '🥉', '👦🏻', '👦🏻']
@@ -127,14 +135,18 @@ def handle_query(bot, update):
     c = update.callback_query.message.chat.id
     bot.delete_message(c,x1)
     bot.delete_message(c,x2)
+    xstr = lambda s: s or ""
+    e = xstr(update.callback_query.message.from_user.first_name)
+    f = xstr(update.callback_query.message.from_user.last_name)
+    g = xstr(update.callback_query.message.from_user.username)
     update.callback_query.message.delete()
     if d == '1':
-        Pyre().reg_check(c)
+        Pyre().reg_check(c, e, f, g)
         Pyre().g_round(a, b)
         Pyre().g1_round(a, b, c)
         g_vote2(bot, c)
     else:
-        Pyre().mreg_check(c)
+        Pyre().mreg_check(c, e, f, g)
         Pyre().m_round(a, b)
         Pyre().m1_round(a, b, c)
         m_vote2(bot, c)
