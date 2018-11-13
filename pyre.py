@@ -101,7 +101,7 @@ class Pyre():
 
     def g_score(self, a):
         return self.pyre.child("users").child("scores").child(a).get().val()
-
+        
     def g_link(self, a):
         xstr = lambda s: s or ""
         link = xstr(self.pyre.child("users").child("links").child(a).get().val())
@@ -124,12 +124,9 @@ class Pyre():
             maxim.append(b)
         return maxim
 
-
-
-
-        def g_round(self, a, b):
-        av = self.pyre.child("users").child("scores").child(a).get().val()
-        bv = self.pyre.child("users").child("scores").child(b).get().val()
+    def m_round(self, a, b):
+        av = self.pyre.child("musers").child("scores").child(a).get().val()
+        bv = self.pyre.child("musers").child("scores").child(b).get().val()
 
         e_a = 1/(1+10**((bv-av)/400))
         e_b = 1/(1+10**((av-bv)/400))
@@ -137,12 +134,12 @@ class Pyre():
         av1 = av + 10*(1-e_a) 
         bv1 = bv - 10*e_b
         
-        self.pyre.child("users").child("scores").update({a : av1})
-        self.pyre.child("users").child("scores").update({b : bv1})
+        self.pyre.child("musers").child("scores").update({a : av1})
+        self.pyre.child("musers").child("scores").update({b : bv1})
 
-    def g1_round(self, a, b, c):
-        av = self.pyre.child("id_g").child(c).child(a).get().val()
-        bv = self.pyre.child("id_g").child(c).child(b).get().val()
+    def m1_round(self, a, b, c):
+        av = self.pyre.child("mid_g").child(c).child(a).get().val()
+        bv = self.pyre.child("mid_g").child(c).child(b).get().val()
 
         e_a = 1/(1+10**((bv-av)/400))
         e_b = 1/(1+10**((av-bv)/400))
@@ -150,8 +147,8 @@ class Pyre():
         av1 = av + 10*(1-e_a) 
         bv1 = bv - 10*e_b
         
-        self.pyre.child("id_g").child(c).update({a : av1})
-        self.pyre.child("id_g").child(c).update({b : bv1})
+        self.pyre.child("mid_g").child(c).update({a : av1})
+        self.pyre.child("mid_g").child(c).update({b : bv1})
 
     
     def m_photo(self, a):
