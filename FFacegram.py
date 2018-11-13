@@ -60,9 +60,9 @@ def m_nrating(bot, update):
 
 def g_idrating(bot, update):
     xstr = lambda s: s or "none"
-    e = xstr(update.callback_query.message.from_user.first_name)
-    f = xstr(update.callback_query.message.from_user.last_name)
-    g = xstr(update.callback_query.message.from_user.username)
+    e = xstr(update.message.from_user.first_name)
+    f = xstr(update.message.from_user.last_name)
+    g = xstr(update.message.from_user.username)
     Pyre().reg_check(update.message.chat_id, e, f, g)
     rates = Pyre().gid_rating(update.message.chat_id)
     girls_number = 5
@@ -73,9 +73,9 @@ def g_idrating(bot, update):
 
 def m_idrating(bot, update):
     xstr = lambda s: s or "none"
-    e = xstr(update.callback_query.message.from_user.first_name)
-    f = xstr(update.callback_query.message.from_user.last_name)
-    g = xstr(update.callback_query.message.from_user.username)
+    e = xstr(update.message.from_user.first_name)
+    f = xstr(update.message.from_user.last_name)
+    g = xstr(update.message.from_user.username)
     Pyre().reg_check(update.message.chat_id, e, f, g)
     rates = Pyre().mid_rating(update.message.chat_id)
     men_number = 5
