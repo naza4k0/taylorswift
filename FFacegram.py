@@ -29,10 +29,18 @@ def photo_upd(bot, update):
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
         
 def g_vote(bot, update):
-    g_vote2(bot, update.message.chat_id)
+    xstr = lambda s: s or ""
+    a = xstr(update.message.from_user.first_name)
+    b = xstr(update.message.from_user.last_name)
+    c = xstr(update.message.from_user.username)
+    g_vote2(bot, update.message.chat_id, a, b, c)
 
 def m_vote(bot, update):
-    m_vote2(bot, update.message.chat_id)
+    xstr = lambda s: s or ""
+    a = xstr(update.message.from_user.first_name)
+    b = xstr(update.message.from_user.last_name)
+    c = xstr(update.message.from_user.username)
+    m_vote2(bot, update.message.chat_id, a, b, c)
 
 def g_nrating(bot, update):
     rates = Pyre().g_rating()
@@ -92,7 +100,7 @@ def m_adrating(bot, update):
     else:
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, you need admin rights to do that.")
 
-def g_vote2(bot, chat_id):
+def g_vote2(bot, chat_id, e, f, g):
     a=0
     b=0
 
@@ -107,9 +115,9 @@ def g_vote2(bot, chat_id):
     print(x)
     d = 1
     bot.send_message(chat_id=chat_id, text="Какая девушка лучше? 🍓　　　", reply_markup = InlineKeyboardMarkup(
-        [[InlineKeyboardButton(text="Левая", callback_data= f'{a} {b} {x1} {x2} {d}'), InlineKeyboardButton(text="Правая", callback_data=f'{b} {a} {x1} {x2} {d}')]]))
+        [[InlineKeyboardButton(text="Левая", callback_data= f'{a} {b} {x1} {x2} {d} {e} {f} {g}'), InlineKeyboardButton(text="Правая", callback_data=f'{b} {a} {x1} {x2} {d} {e} {f} {g}')]]))
    
-def m_vote2(bot, chat_id):
+def m_vote2(bot, chat_id, e, f, g):
     a=0
     b=0
 
@@ -124,32 +132,28 @@ def m_vote2(bot, chat_id):
     print(x)
     d = 0
     bot.send_message(chat_id=chat_id, text="Какой парень лучше? 🍆　　　", reply_markup = InlineKeyboardMarkup(
-        [[InlineKeyboardButton(text="Левый", callback_data= f'{a} {b} {x1} {x2} {d}'), InlineKeyboardButton(text="Правый", callback_data=f'{b} {a} {x1} {x2} {d}')]]))
+        [[InlineKeyboardButton(text="Левый", callback_data= f'{a} {b} {x1} {x2} {d} {e} {f} {g}'), InlineKeyboardButton(text="Правый", callback_data=f'{b} {a} {x1} {x2} {d} {e} {f} {g}')]]))
    
 def unknown(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def handle_query(bot, update):
     data = update.callback_query.data
-    a, b, x1, x2, d = data.split()
+    a, b, x1, x2, d, e, f, g = data.split()
     c = update.callback_query.message.chat.id
     bot.delete_message(c,x1)
     bot.delete_message(c,x2)
-    xstr = lambda s: s or ""
     update.callback_query.message.delete()
-    e = xstr(update.inline_query.message.from_user.first_name)
-    f = xstr(update.inline_query.message.from_user.last_name)
-    g = xstr(update.inline_query.message.from_user.username)
     if d == '1':
         Pyre().reg_check(c, e, f, g)
         Pyre().g_round(a, b)
         Pyre().g1_round(a, b, c)
-        g_vote2(bot, c)
+        g_vote2(bot, c, e, f, g)
     else:
         Pyre().mreg_check(c, e, f, g)
         Pyre().m_round(a, b)
         Pyre().m1_round(a, b, c)
-        m_vote2(bot, c)
+        m_vote2(bot, c, e, f, g)
     
 updater = Updater(token='757304961:AAFFLGinPle1bE5Arq12SL2mFiGj_DL849E')
 dispatcher = updater.dispatcher
