@@ -88,9 +88,9 @@ class Pyre():
         if b == "":
             for i in range(self.pyre.child("users").child("number").child(0).get().val()):
                 self.pyre.child("id_g").child(a).child(i).set(1000)
-            self.pyre.child("mid_g").child("reg").child(a).set(l + " " + m + " " + n)
+            self.pyre.child("id_g").child("reg").child(a).set(l + " " + m + " " + n)
         if b == 1:
-            self.pyre.child("mid_g").child("reg").child(a).set(l + " " + m + " " + n)
+            self.pyre.child("id_g").child("reg").child(a).set(l + " " + m + " " + n)
 
     def g_photo_upload(self, a):
         c = self.pyre.child("musers").child("number").child(0).get().val()
