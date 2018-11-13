@@ -128,7 +128,7 @@ def handle_query(bot, update):
     bot.delete_message(c,x1)
     bot.delete_message(c,x2)
     update.callback_query.message.delete()
-    if d==1:
+    if d == '1':
         Pyre().reg_check(c)
         Pyre().g_round(a, b)
         Pyre().g1_round(a, b, c)
