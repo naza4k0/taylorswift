@@ -52,10 +52,30 @@ class Pyre():
             maxim.append(b)
         return maxim
 
+    def gid_rating(self, a):
+        data = []
+        for i in range(self.pyre.child("users").child("number").child(0).get().val()):
+            data.append(self.pyre.child("id_g").child(a).child(i).get().val())
+        maxim = []
+        for i in range(5):
+            a = max(data)
+            b = data.index(a)
+            data[b] = 0
+            maxim.append(b)
+        return maxim
+
     def g_text_upload(self, a):
         c = self.pyre.child("users").child("number").child(0).get().val()
         self.pyre.child("users").child("names").child(c).set(a)
        
+    def reg_check(self, a):
+        xstr = lambda s: s or ""
+        a = xstr(self.pyre.child("id_g").child("reg").child(a).get().val())
+        if a == "":
+            for i in range(self.pyre.child("users").child("number").child(0).get().val()):
+                self.pyre.child("id_g").child(a).child(i).set(1000)
+            self.pyre.child("id_g").child("reg").update({a: "1"})
+
     def g_photo_upload(self, a):
         c = self.pyre.child("users").child("number").child(0).get().val()
         self.pyre.child("users").child("scores").child(c).set(1000)
@@ -81,7 +101,6 @@ class Pyre():
         else:
             b = c
         return b
-
 
     def g_admin_rating(self):
         data = []

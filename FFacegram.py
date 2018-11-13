@@ -39,6 +39,15 @@ def g_nrating(bot, update):
     textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
     bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
 
+def g_idrating(bot, update):
+    Pyre().reg_check(update.message.chat_id)
+    rates = Pyre().gid_rating(update.message.chat_id)
+    girls_number = 5
+    emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
+    girls_titles = [Pyre().g_link(rates[i]) for i in range(girls_number)]
+    textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
+    bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
+
 def g_adrating(bot, update):
     if from_admins(update):
         rates = Pyre().g_admin_rating()
@@ -99,6 +108,7 @@ dispatcher.add_handler(start_handler)
 
 girls_handler = CommandHandler('vote', g_vote)
 rating_handler = CommandHandler('rating', g_nrating)
+idrating_handler = CommandHandler('irating', g_idrating)
 updater_handler = CommandHandler('update', update)
 adrating_handler = CommandHandler('admin_rating', g_adrating)
 
@@ -106,6 +116,7 @@ dispatcher.add_handler(adrating_handler)
 dispatcher.add_handler(updater_handler)
 dispatcher.add_handler(girls_handler)
 dispatcher.add_handler(rating_handler)
+dispatcher.add_handler(idrating_handler)
 
 updater.dispatcher.add_handler(CallbackQueryHandler(handle_query))
 updater.start_polling()
