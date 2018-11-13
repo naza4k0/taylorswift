@@ -29,14 +29,14 @@ def photo_upd(bot, update):
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
         
 def g_vote(bot, update):
-    xstr = lambda s: s or ""
+    xstr = lambda s: s or "none"
     a = xstr(update.message.from_user.first_name)
     b = xstr(update.message.from_user.last_name)
     c = xstr(update.message.from_user.username)
     g_vote2(bot, update.message.chat_id, a, b, c)
 
 def m_vote(bot, update):
-    xstr = lambda s: s or ""
+    xstr = lambda s: s or "none"
     a = xstr(update.message.from_user.first_name)
     b = xstr(update.message.from_user.last_name)
     c = xstr(update.message.from_user.username)
@@ -59,7 +59,7 @@ def m_nrating(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
 
 def g_idrating(bot, update):
-    xstr = lambda s: s or ""
+    xstr = lambda s: s or "none"
     e = xstr(update.callback_query.message.from_user.first_name)
     f = xstr(update.callback_query.message.from_user.last_name)
     g = xstr(update.callback_query.message.from_user.username)
@@ -72,7 +72,7 @@ def g_idrating(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
 
 def m_idrating(bot, update):
-    xstr = lambda s: s or ""
+    xstr = lambda s: s or "none"
     e = xstr(update.callback_query.message.from_user.first_name)
     f = xstr(update.callback_query.message.from_user.last_name)
     g = xstr(update.callback_query.message.from_user.username)
