@@ -136,10 +136,10 @@ def handle_query(bot, update):
     bot.delete_message(c,x1)
     bot.delete_message(c,x2)
     xstr = lambda s: s or ""
+    update.callback_query.message.delete()
     e = xstr(update.inline_query.message.from_user.first_name)
     f = xstr(update.inline_query.message.from_user.last_name)
     g = xstr(update.inline_query.message.from_user.username)
-    update.callback_query.message.delete()
     if d == '1':
         Pyre().reg_check(c, e, f, g)
         Pyre().g_round(a, b)
