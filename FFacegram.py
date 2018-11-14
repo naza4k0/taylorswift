@@ -41,7 +41,8 @@ def g_vote(bot, update):
         a = xstr(update.message.from_user.first_name)
         b = xstr(update.message.from_user.last_name)
         c = xstr(update.message.from_user.username)
-        g_vote2(bot, update.message.chat_id, a, b, c)
+        l = xstr(update.message.from_user.id)
+        g_vote2(bot, update.message.chat_id, a, b, c, l)
     else:
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
@@ -51,7 +52,8 @@ def m_vote(bot, update):
         a = xstr(update.message.from_user.first_name)
         b = xstr(update.message.from_user.last_name)
         c = xstr(update.message.from_user.username)
-        m_vote2(bot, update.message.chat_id, a, b, c)
+        l = xstr(update.message.from_user.id)
+        m_vote2(bot, update.message.chat_id, a, b, c, l)
     else:
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
     
@@ -125,7 +127,7 @@ def m_adrating(bot, update):
     else:
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, you need admin rights to do that.")
 
-def g_vote2(bot, chat_id, e, f, g):
+def g_vote2(bot, chat_id, e, f, g, l):
     a=0
     b=0
 
@@ -140,9 +142,9 @@ def g_vote2(bot, chat_id, e, f, g):
     print(x)
     d = 1
     bot.send_message(chat_id=chat_id, text="Какая девушка лучше? 🍓　　　", reply_markup = InlineKeyboardMarkup(
-        [[InlineKeyboardButton(text="Левая", callback_data= f'{a} {b} {x1} {x2} {d} {e} {f} {g}'), InlineKeyboardButton(text="Правая", callback_data=f'{b} {a} {x1} {x2} {d} {e} {f} {g}')]]))
+        [[InlineKeyboardButton(text="Левая", callback_data= f'{a} {b} {x1} {x2} {d} {e} {f} {g} {l}'), InlineKeyboardButton(text="Правая", callback_data=f'{b} {a} {x1} {x2} {d} {e} {f} {g} {l}')]]))
    
-def m_vote2(bot, chat_id, e, f, g):
+def m_vote2(bot, chat_id, e, f, g, l):
     a=0
     b=0
 
@@ -157,29 +159,29 @@ def m_vote2(bot, chat_id, e, f, g):
     print(x)
     d = 0
     bot.send_message(chat_id=chat_id, text="Какой парень лучше? 🍆　　　", reply_markup = InlineKeyboardMarkup(
-        [[InlineKeyboardButton(text="Левый", callback_data= f'{a} {b} {x1} {x2} {d} {e} {f} {g}'), InlineKeyboardButton(text="Правый", callback_data=f'{b} {a} {x1} {x2} {d} {e} {f} {g}')]]))
+        [[InlineKeyboardButton(text="Левый", callback_data= f'{a} {b} {x1} {x2} {d} {e} {f} {g} {l}'), InlineKeyboardButton(text="Правый", callback_data=f'{b} {a} {x1} {x2} {d} {e} {f} {g} {l}')]]))
    
 def unknown(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def handle_query(bot, update):
     data = update.callback_query.data
-    a, b, x1, x2, d, e, f, g = data.split()
+    a, b, x1, x2, d, e, f, g, l = data.split()
     c = update.callback_query.message.chat.id
     bot.delete_message(c,x1)
     bot.delete_message(c,x2)
     update.callback_query.message.delete()
-    if banned(c) == False:
+    if banned(l) == False:
         if d == '1':
             Pyre().reg_check(c, e, f, g)
             Pyre().g_round(a, b)
             Pyre().g1_round(a, b, c)
-            g_vote2(bot, c, e, f, g)
+            g_vote2(bot, c, e, f, g, l)
         else:
             Pyre().mreg_check(c, e, f, g)
             Pyre().m_round(a, b)
             Pyre().m1_round(a, b, c)
-            m_vote2(bot, c, e, f, g)
+            m_vote2(bot, c, e, f, g, l)
     
 updater = Updater(token='757304961:AAFFLGinPle1bE5Arq12SL2mFiGj_DL849E')
 dispatcher = updater.dispatcher
