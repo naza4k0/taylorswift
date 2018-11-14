@@ -13,8 +13,15 @@ def from_admins(update):
     admins_ids = [233768128, 364448153, 330954316]
     return (from_super_admin(update) or (update.message.from_user.id in admins_ids))
 
+def banned(a):
+    banned_ids = [367989051, 358690629]
+    return (a in banned_ids)
+
 def start(bot, update):
-    bot.send_message(chat_id=update.message.chat_id, text="Привет, используй комманду /vote для того чтобы принять участие в голосовании")
+    if not banned(update.message.chat_id):
+        bot.send_message(chat_id=update.message.chat_id, text="Привет, используй комманду /vote для того чтобы принять участие в голосовании")
+    else:
+        bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def text_upd(bot, update):
     if from_super_admin(update):
@@ -29,60 +36,78 @@ def photo_upd(bot, update):
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
         
 def g_vote(bot, update):
-    xstr = lambda s: s or "none"
-    a = xstr(update.message.from_user.first_name)
-    b = xstr(update.message.from_user.last_name)
-    c = xstr(update.message.from_user.username)
-    g_vote2(bot, update.message.chat_id, a, b, c)
+    if not banned(update.message.chat_id):
+        xstr = lambda s: s or "none"
+        a = xstr(update.message.from_user.first_name)
+        b = xstr(update.message.from_user.last_name)
+        c = xstr(update.message.from_user.username)
+        g_vote2(bot, update.message.chat_id, a, b, c)
+    else:
+        bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def m_vote(bot, update):
-    xstr = lambda s: s or "none"
-    a = xstr(update.message.from_user.first_name)
-    b = xstr(update.message.from_user.last_name)
-    c = xstr(update.message.from_user.username)
-    m_vote2(bot, update.message.chat_id, a, b, c)
-
+    if not banned(update.message.chat_id):
+        xstr = lambda s: s or "none"
+        a = xstr(update.message.from_user.first_name)
+        b = xstr(update.message.from_user.last_name)
+        c = xstr(update.message.from_user.username)
+        m_vote2(bot, update.message.chat_id, a, b, c)
+    else:
+        bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
+    
 def g_nrating(bot, update):
-    rates = Pyre().g_rating()
-    girls_number = 5
-    emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
-    girls_titles = [Pyre().g_link(rates[i]) for i in range(girls_number)]
-    textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
-    bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
+    if not banned(update.message.chat_id):
+        rates = Pyre().g_rating()
+        girls_number = 5
+        emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
+        girls_titles = [Pyre().g_link(rates[i]) for i in range(girls_number)]
+        textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
+        bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
+    else:
+        bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def m_nrating(bot, update):
-    rates = Pyre().m_rating()
-    men_number = 5
-    emojis = ['🥇', '🥈', '🥉', '👦🏻', '👦🏻']
-    girls_titles = [Pyre().m_link(rates[i]) for i in range(men_number)]
-    textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
-    bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
-
+    if not banned(update.message.chat_id):
+        rates = Pyre().m_rating()
+        men_number = 5
+        emojis = ['🥇', '🥈', '🥉', '👦🏻', '👦🏻']
+        girls_titles = [Pyre().m_link(rates[i]) for i in range(men_number)]
+        textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
+        bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
+    else:
+        bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
+    
 def g_idrating(bot, update):
-    xstr = lambda s: s or "none"
-    e = xstr(update.message.from_user.first_name)
-    f = xstr(update.message.from_user.last_name)
-    g = xstr(update.message.from_user.username)
-    Pyre().reg_check(update.message.chat_id, e, f, g)
-    rates = Pyre().gid_rating(update.message.chat_id)
-    girls_number = 5
-    emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
-    girls_titles = [Pyre().g_link(rates[i]) for i in range(girls_number)]
-    textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
-    bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
+    if not banned(update.message.chat_id):    
+        xstr = lambda s: s or "none"
+        e = xstr(update.message.from_user.first_name)
+        f = xstr(update.message.from_user.last_name)
+        g = xstr(update.message.from_user.username)
+        Pyre().reg_check(update.message.chat_id, e, f, g)
+        rates = Pyre().gid_rating(update.message.chat_id)
+        girls_number = 5
+        emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
+        girls_titles = [Pyre().g_link(rates[i]) for i in range(girls_number)]
+        textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
+        bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
+    else:
+        bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def m_idrating(bot, update):
-    xstr = lambda s: s or "none"
-    e = xstr(update.message.from_user.first_name)
-    f = xstr(update.message.from_user.last_name)
-    g = xstr(update.message.from_user.username)
-    Pyre().reg_check(update.message.chat_id, e, f, g)
-    rates = Pyre().mid_rating(update.message.chat_id)
-    men_number = 5
-    emojis = ['🥇', '🥈', '🥉', '👦🏻', '👦🏻']
-    girls_titles = [Pyre().m_link(rates[i]) for i in range(men_number)]
-    textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
-    bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
+    if not banned(update.message.chat_id):  
+        xstr = lambda s: s or "none"
+        e = xstr(update.message.from_user.first_name)
+        f = xstr(update.message.from_user.last_name)
+        g = xstr(update.message.from_user.username)
+        Pyre().reg_check(update.message.chat_id, e, f, g)
+        rates = Pyre().mid_rating(update.message.chat_id)
+        men_number = 5
+        emojis = ['🥇', '🥈', '🥉', '👦🏻', '👦🏻']
+        girls_titles = [Pyre().m_link(rates[i]) for i in range(men_number)]
+        textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
+        bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
+    else:
+        bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def g_adrating(bot, update):
     if from_admins(update):
