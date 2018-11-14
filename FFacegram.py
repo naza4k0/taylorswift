@@ -18,7 +18,7 @@ def banned(a):
     return (a in banned_ids)
 
 def start(bot, update):
-    if not banned(update.message.chat_id):
+    if banned(update.message.chat_id) == False:
         bot.send_message(chat_id=update.message.chat_id, text="Привет, используй комманду /vote для того чтобы принять участие в голосовании")
     else:
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
@@ -36,7 +36,7 @@ def photo_upd(bot, update):
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
         
 def g_vote(bot, update):
-    if not banned(update.message.chat_id):
+    if banned(update.message.chat_id) == False:
         xstr = lambda s: s or "none"
         a = xstr(update.message.from_user.first_name)
         b = xstr(update.message.from_user.last_name)
@@ -46,7 +46,7 @@ def g_vote(bot, update):
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def m_vote(bot, update):
-    if not banned(update.message.chat_id):
+    if banned(update.message.chat_id) == False:
         xstr = lambda s: s or "none"
         a = xstr(update.message.from_user.first_name)
         b = xstr(update.message.from_user.last_name)
@@ -56,7 +56,7 @@ def m_vote(bot, update):
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
     
 def g_nrating(bot, update):
-    if not banned(update.message.chat_id):
+    if banned(update.message.chat_id) == False:
         rates = Pyre().g_rating()
         girls_number = 5
         emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
@@ -67,7 +67,7 @@ def g_nrating(bot, update):
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def m_nrating(bot, update):
-    if not banned(update.message.chat_id):
+    if banned(update.message.chat_id) == False:
         rates = Pyre().m_rating()
         men_number = 5
         emojis = ['🥇', '🥈', '🥉', '👦🏻', '👦🏻']
@@ -78,7 +78,7 @@ def m_nrating(bot, update):
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
     
 def g_idrating(bot, update):
-    if not banned(update.message.chat_id):    
+    if banned(update.message.chat_id) == False:    
         xstr = lambda s: s or "none"
         e = xstr(update.message.from_user.first_name)
         f = xstr(update.message.from_user.last_name)
@@ -94,7 +94,7 @@ def g_idrating(bot, update):
         bot.send_message(chat_id=update.message.chat_id, text="Sorry, I didn't understand that command.")
 
 def m_idrating(bot, update):
-    if not banned(update.message.chat_id):  
+    if banned(update.message.chat_id) == False:  
         xstr = lambda s: s or "none"
         e = xstr(update.message.from_user.first_name)
         f = xstr(update.message.from_user.last_name)
@@ -169,16 +169,17 @@ def handle_query(bot, update):
     bot.delete_message(c,x1)
     bot.delete_message(c,x2)
     update.callback_query.message.delete()
-    if d == '1':
-        Pyre().reg_check(c, e, f, g)
-        Pyre().g_round(a, b)
-        Pyre().g1_round(a, b, c)
-        g_vote2(bot, c, e, f, g)
-    else:
-        Pyre().mreg_check(c, e, f, g)
-        Pyre().m_round(a, b)
-        Pyre().m1_round(a, b, c)
-        m_vote2(bot, c, e, f, g)
+    if banned(c) == False:
+        if d == '1':
+            Pyre().reg_check(c, e, f, g)
+            Pyre().g_round(a, b)
+            Pyre().g1_round(a, b, c)
+            g_vote2(bot, c, e, f, g)
+        else:
+            Pyre().mreg_check(c, e, f, g)
+            Pyre().m_round(a, b)
+            Pyre().m1_round(a, b, c)
+            m_vote2(bot, c, e, f, g)
     
 updater = Updater(token='757304961:AAFFLGinPle1bE5Arq12SL2mFiGj_DL849E')
 dispatcher = updater.dispatcher
