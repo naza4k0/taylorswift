@@ -61,7 +61,7 @@ def g_nrating(bot, update):
     if banned(update.message.chat_id) == False:
         rates = Pyre().g_rating()
         girls_number = 5
-        emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
+        emojis = ['🥇', '🥈', '🥉', '👩🏻', '👩🏻']
         girls_titles = [Pyre().g_link(rates[i]) for i in range(girls_number)]
         textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
         bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
@@ -88,7 +88,7 @@ def g_idrating(bot, update):
         Pyre().reg_check(update.message.chat_id, e, f, g)
         rates = Pyre().gid_rating(update.message.chat_id)
         girls_number = 5
-        emojis = ['🥇', '🥈', '🥉', '👩‍', '👩‍']
+        emojis = ['🥇', '🥈', '🥉', '👩🏻', '👩🏻']
         girls_titles = [Pyre().g_link(rates[i]) for i in range(girls_number)]
         textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
         bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
