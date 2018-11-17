@@ -89,8 +89,12 @@ class Pyre():
             for i in range(self.pyre.child("users").child("number").child(0).get().val()):
                 self.pyre.child("id_g").child(a).child(i).set(1000)
             self.pyre.child("id_g").child("reg").child(a).set(l + " " + m + " " + n)
-        if b == 1:
+            return 2
+        elif b == 1:
             self.pyre.child("id_g").child("reg").child(a).set(l + " " + m + " " + n)
+            return 1
+        else:
+            return 0
 
     def g_photo_upload(self, a):
         c = self.pyre.child("musers").child("number").child(0).get().val()
@@ -192,8 +196,12 @@ class Pyre():
             for i in range(self.pyre.child("musers").child("number").child(0).get().val()):
                 self.pyre.child("mid_g").child(a).child(i).set(1000)
             self.pyre.child("mid_g").child("reg").child(a).set(l + " " + m + " " + n)
-        if b == 1:
+            return 2
+        elif b == 1:
             self.pyre.child("mid_g").child("reg").child(a).set(l + " " + m + " " + n)
+            return 1
+        else:
+            return 0
 
     def m_number(self):
         return self.pyre.child("musers").child("number").child(0).get().val()
