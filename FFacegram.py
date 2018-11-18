@@ -25,13 +25,14 @@ def start(bot, update):
 
 def text_upd(bot, update):
     if from_super_admin(update):
-        Pyre().g_text_upload(update.message.text)
+        Pyre().g_link_upload(update.message.text)
     else:
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
 
 def photo_upd(bot, update):
     if from_super_admin(update):
         Pyre().g_photo_upload(update.message.photo[0].file_id)
+        Pyre().g_text_upload(update.message.caption)
     else:
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
         
