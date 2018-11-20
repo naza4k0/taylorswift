@@ -141,7 +141,7 @@ def g_vote2(bot, chat_id, e, f, g, l):
     x2 = x[1].message_id
     print(x)
     d = 1
-    bot.send_message(chat_id=chat_id, text="Какая девушка лучше? 🍓　　　", reply_markup = InlineKeyboardMarkup(
+    bot.send_message(chat_id=chat_id, text="Кого выберешь? 🍓　　　", reply_markup = InlineKeyboardMarkup(
         [[InlineKeyboardButton(text="Левая", callback_data= f'{a} {b} {x1} {x2} {d} {e} {f} {g} {l}'), InlineKeyboardButton(text="Правая", callback_data=f'{b} {a} {x1} {x2} {d} {e} {f} {g} {l}')]]))
    
 def m_vote2(bot, chat_id, e, f, g, l):
@@ -158,7 +158,7 @@ def m_vote2(bot, chat_id, e, f, g, l):
     x2 = x[1].message_id
     print(x)
     d = 0
-    bot.send_message(chat_id=chat_id, text="Какой парень лучше? 🍆　　　", reply_markup = InlineKeyboardMarkup(
+    bot.send_message(chat_id=chat_id, text="Кого выберешь? 🍆　　　", reply_markup = InlineKeyboardMarkup(
         [[InlineKeyboardButton(text="Левый", callback_data= f'{a} {b} {x1} {x2} {d} {e} {f} {g} {l}'), InlineKeyboardButton(text="Правый", callback_data=f'{b} {a} {x1} {x2} {d} {e} {f} {g} {l}')]]))
    
 def unknown(bot, update):
