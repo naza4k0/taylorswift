@@ -81,6 +81,10 @@ class Pyre():
     def g_text_upload(self, a):
         c = self.pyre.child("musers").child("number").child(0).get().val()
         self.pyre.child("musers").child("names").child(c).set(a)
+        
+    def g_link_upload(self, a):
+        c = self.pyre.child("musers").child("number").child(0).get().val()
+        self.pyre.child("musers").child("links").child(c).set(a)
        
     def reg_check(self, a, l, m, n):
         xstr = lambda s: s or ""
