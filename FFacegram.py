@@ -287,7 +287,7 @@ prating_handler = CommandHandler('prating', p_nrating)
 pidrating_handler = CommandHandler('pirating', p_idrating)
 padrating_handler = CommandHandler('padmin_rating', p_adrating)
 
-dispatcher.add_handler(CommandHandler("ban", banning, pass_args=True))
+dispatcher.add_handler(CommandHandler("bannnn", banning, pass_args=True))
 
 dispatcher.add_handler(adrating_handler)
 dispatcher.add_handler(girls_handler)

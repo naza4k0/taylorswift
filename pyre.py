@@ -339,5 +339,6 @@ class Pyre():
 
     def bannaz(self,a):
         b = self.pyre.child("banned").get().val()
-        b.append(a)
+        b = str(b)
+        b = b + " " + a
         self.pyre.update({"banned": b})
