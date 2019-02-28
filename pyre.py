@@ -104,9 +104,9 @@ class Pyre():
         c = self.pyre.child("pusers").child("number").child(0).get().val()
         self.pyre.child("pusers").child("scores").child(c).set(1000)
         self.pyre.child("pusers").child("photos").child(c).set(a)
+        self.pyre.child("pusers").child("number").update({0: c+1})    
         for i in self.pyre.child("pid_g").child("reg").get().each():
-            self.pyre.child("pid_g").child(i.key()).child(c).set(1000)
-        self.pyre.child("pusers").child("number").update({0: c+1})
+            self.pyre.child("pid_g").child(i.key()).child(c).set(1000)  
 
     def g_number(self):
         return self.pyre.child("users").child("number").child(0).get().val()
