@@ -14,7 +14,7 @@ def from_admins(update):
     return (from_super_admin(update) or (update.message.from_user.id in admins_ids))
 
 def banned(a):
-    banned_ids = Pyre().getban().split
+    banned_ids = Pyre().getban()
     return (a in banned_ids)
 
 def start(bot, update):
