@@ -144,7 +144,7 @@ def p_idrating(bot, update):
         rates = Pyre().pid_rating(update.message.chat_id)
         men_number = 5
         emojis = ['🥇', '🥈', '🥉', '📖', '📖']
-        girls_titles = [Pyre().m_link(rates[i]) for i in range(men_number)]
+        girls_titles = [Pyre().p_link(rates[i]) for i in range(men_number)]
         textr = '\n'.join([f'{e} : {name_with_link}' for e, name_with_link in zip(emojis, girls_titles)])
         bot.send_message(chat_id=update.message.chat_id, text=textr, parse_mode="HTML", disable_web_page_preview=True)
     else:
