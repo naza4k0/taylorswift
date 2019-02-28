@@ -238,19 +238,19 @@ def handle_query(bot, update):
     if banned(l) == False:
         if d == '1':
             if Pyre().reg_check(c, e, f, g)>0:
-                bot.send_message(chat_id=367989051, text=e + " " + f + " @" + g + " used the bot the first time with males!")    
+                bot.send_message(chat_id=367989051, text=e + " " + f + " @" + g + " " + c + " used the bot the first time with males!")    
             Pyre().g_round(a, b)
             Pyre().g1_round(a, b, c)
             g_vote2(bot, c, e, f, g, l)
         elif d == '2':
             if Pyre().mreg_check(c, e, f, g)>0:
-                bot.send_message(chat_id=367989051, text=e + " " + f + " @" + g + " used the bot the first time with females!")  
+                bot.send_message(chat_id=367989051, text=e + " " + f + " @" + g + " " + c + " used the bot the first time with females!")  
             Pyre().m_round(a, b)
             Pyre().m1_round(a, b, c)
             m_vote2(bot, c, e, f, g, l)
         else:
             if Pyre().preg_check(c, e, f, g)>0:
-                bot.send_message(chat_id=367989051, text=e + " " + f + " @" + g + " used the bot the first time with teachers!")  
+                bot.send_message(chat_id=367989051, text=e + " " + f + " @" + g + " " + c + " used the bot the first time with teachers!")  
             Pyre().p_round(a, b)
             Pyre().p1_round(a, b, c)
             p_vote2(bot, c, e, f, g, l)
