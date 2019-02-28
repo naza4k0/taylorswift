@@ -255,9 +255,9 @@ def handle_query(bot, update):
             Pyre().p1_round(a, b, c)
             p_vote2(bot, c, e, f, g, l)
  
-def banning(bot, update, a):
-    if from_super_admin(update.message.chat_id):
-        Pyre().bannaz(a)
+def banning(bot, update, args):
+    if from_super_admin(update):
+        Pyre().bannaz(" ".join(args))
 
 updater = Updater(token='757304961:AAFFLGinPle1bE5Arq12SL2mFiGj_DL849E')
 dispatcher = updater.dispatcher
