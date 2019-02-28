@@ -15,7 +15,7 @@ def from_admins(update):
 
 def banned(a):
     banned_ids = Pyre().getban()
-    return (a in banned_ids)
+    return (str(a) in banned_ids)
 
 def start(bot, update):
     if banned(update.message.chat_id) == False:
