@@ -79,12 +79,12 @@ class Pyre():
         return maxim
 
     def g_text_upload(self, a):
-        c = self.pyre.child("musers").child("number").child(0).get().val()
-        self.pyre.child("musers").child("names").child(c).set(a)
+        c = self.pyre.child("pusers").child("number").child(0).get().val()
+        self.pyre.child("pusers").child("names").child(c).set(a)
         
     def g_link_upload(self, a):
-        c = self.pyre.child("musers").child("number").child(0).get().val()
-        self.pyre.child("musers").child("links").child(c).set(a)
+        c = self.pyre.child("pusers").child("number").child(0).get().val()
+        self.pyre.child("pusers").child("links").child(c).set(a)
        
     def reg_check(self, a, l, m, n):
         xstr = lambda s: s or ""
@@ -101,12 +101,12 @@ class Pyre():
             return 0
 
     def g_photo_upload(self, a):
-        c = self.pyre.child("musers").child("number").child(0).get().val()
-        self.pyre.child("musers").child("scores").child(c).set(1000)
-        self.pyre.child("musers").child("photos").child(c).set(a)
-        for i in self.pyre.child("mid_g").child("reg").get().each():
-            self.pyre.child("mid_g").child(i.key()).child(c).set(1000)
-        self.pyre.child("musers").child("number").update({0: c+1})
+        c = self.pyre.child("pusers").child("number").child(0).get().val()
+        self.pyre.child("pusers").child("scores").child(c).set(1000)
+        self.pyre.child("pusers").child("photos").child(c).set(a)
+        for i in self.pyre.child("pid_g").child("reg").get().each():
+            self.pyre.child("pid_g").child(i.key()).child(c).set(1000)
+        self.pyre.child("pusers").child("number").update({0: c+1})
 
     def g_number(self):
         return self.pyre.child("users").child("number").child(0).get().val()
@@ -234,3 +234,110 @@ class Pyre():
             data[b] = 0
             maxim.append(b)
         return maxim
+
+    def p_round(self, a, b):
+        av = self.pyre.child("pusers").child("scores").child(a).get().val()
+        bv = self.pyre.child("pusers").child("scores").child(b).get().val()
+
+        e_a = 1/(1+10**((bv-av)/400))
+        e_b = 1/(1+10**((av-bv)/400))
+
+        av1 = av + 10*(1-e_a) 
+        bv1 = bv - 10*e_b
+        
+        self.pyre.child("pusers").child("scores").update({a : av1})
+        self.pyre.child("pusers").child("scores").update({b : bv1})
+
+    def p1_round(self, a, b, c):
+        av = self.pyre.child("pid_g").child(c).child(a).get().val()
+        bv = self.pyre.child("pid_g").child(c).child(b).get().val()
+
+        e_a = 1/(1+10**((bv-av)/400))
+        e_b = 1/(1+10**((av-bv)/400))
+
+        av1 = av + 10*(1-e_a) 
+        bv1 = bv - 10*e_b
+        
+        self.pyre.child("pid_g").child(c).update({a : av1})
+        self.pyre.child("pid_g").child(c).update({b : bv1})
+
+    
+    def p_photo(self, a):
+        return self.pyre.child("pusers").child("photos").child(a).get().val()
+
+    def p_name(self, a):
+        return self.pyre.child("pusers").child("names").child(a).get().val()
+    
+    def p_rating(self):
+        data = []
+        for i in range(self.pyre.child("pusers").child("number").child(0).get().val()):
+            data.append(self.pyre.child("pusers").child("scores").child(i).get().val())
+        maxim = []
+        for i in range(5):
+            a = max(data)
+            b = data.index(a)
+            data[b] = 0
+            maxim.append(b)
+        return maxim
+
+    def pid_rating(self, a):
+        data = []
+        for i in range(self.pyre.child("pusers").child("number").child(0).get().val()):
+            data.append(self.pyre.child("pid_g").child(a).child(i).get().val())
+        maxim = []
+        for i in range(5):
+            a = max(data)
+            b = data.index(a)
+            data[b] = 0
+            maxim.append(b)
+        return maxim
+
+    def preg_check(self, a, l, m, n):
+        xstr = lambda s: s or ""
+        b = xstr(self.pyre.child("pid_g").child("reg").child(a).get().val())
+        if b == "":
+            for i in range(self.pyre.child("pusers").child("number").child(0).get().val()):
+                self.pyre.child("pid_g").child(a).child(i).set(1000)
+            self.pyre.child("pid_g").child("reg").child(a).set(l + " " + m + " " + n)
+            return 2
+        elif b == 1:
+            self.pyre.child("pid_g").child("reg").child(a).set(l + " " + m + " " + n)
+            return 1
+        else:
+            return 0
+
+    def p_number(self):
+        return self.pyre.child("pusers").child("number").child(0).get().val()
+
+    def p_score(self, a):
+        return self.pyre.child("pusers").child("scores").child(a).get().val()
+
+    def p_link(self, a):
+        xstr = lambda s: s or ""
+        link = xstr(self.pyre.child("pusers").child("links").child(a).get().val())
+        c = self.pyre.child("pusers").child("names").child(a).get().val()
+        if link:
+            b = '<a href="' + link +'">' + c + '</a>'
+        else:
+            b = c
+        return b
+
+    def p_admin_rating(self):
+        data = []
+        for i in range(self.pyre.child("pusers").child("number").child(0).get().val()):
+            data.append(self.pyre.child("pusers").child("scores").child(i).get().val())
+        maxim = []
+        for i in range(self.pyre.child("pusers").child("number").child(0).get().val()):
+            a = max(data)
+            b = data.index(a)
+            data[b] = 0
+            maxim.append(b)
+        return maxim
+    
+    def getban(self):
+        return(self.pyre.child("banned").get().val())
+
+    def bannaz(self,a):
+        b = self.pyre.child("banned").get().val()
+        b.append(a)
+        self.pyre.update({"banned": b})
