@@ -238,7 +238,7 @@ def handle_query(bot, update):
     if banned(l) == False:
         if d == '1':
             if Pyre().reg_check(c, e, f, g)>0:
-                bot.send_message(chat_id=367989051, text=e + " " + f + " @" + g + " " + c + " used the bot the first time with males!")    
+                bot.send_message(chat_id=367989051, text=e + " " + f + " @" + g + " " + str(c) + " used the bot the first time with males!")    
             Pyre().g_round(a, b)
             Pyre().g1_round(a, b, c)
             g_vote2(bot, c, e, f, g, l)
