@@ -258,7 +258,7 @@ def handle_query(bot, update):
 def banning(bot, update, args):
         Pyre().bannaz(" ".join(args))
 
-updater = Updater(token='757304961:AAFFLGinPle1bE5Arq12SL2mFiGj_DL849E')
+updater = Updater(token='897701785:AAGw54uyE4L2Zo3st1lJC11tRKDXwGbBQrY')
 dispatcher = updater.dispatcher
 
 echo2_handler = MessageHandler(Filters.photo, photo_upd)
