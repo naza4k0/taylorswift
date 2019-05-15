@@ -30,8 +30,4 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 
-updater.dispatcher.add_handler(CallbackQueryHandler(handle_query))
 updater.start_polling()
-
-unknown_handler = MessageHandler(Filters.command, unknown)
-dispatcher.add_handler(unknown_handler)
