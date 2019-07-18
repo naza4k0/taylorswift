@@ -6,7 +6,7 @@ import logging
 import random
 
 def start(bot, update):
-        bot.send_message(chat_id=update.message.chat_id, text="Send your score in a format" + '/n' + "-name- -type- -score-." + '/n' + "For example,"+ '/n' + "-Iron Man- -Movie- -10-")
+        bot.send_message(chat_id=update.message.chat_id, text="Send your score in a format \n -name- -type- -score-. \n For example, \n -Iron Man- -Movie- -10-")
 
 def text_upd(bot, update):
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
