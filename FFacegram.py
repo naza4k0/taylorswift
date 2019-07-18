@@ -6,17 +6,17 @@ import logging
 import random
 
 def start(bot, update):
-        bot.send_message(chat_id=update.message.chat_id, text="Send anything you would like to talk about here.")
+        bot.send_message(chat_id=update.message.chat_id, text="Send your score in a format -name- -type- -score-. For example, -Iron Man- -Movie- -10-")
 
 def text_upd(bot, update):
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
-        bot.send_message(chat_id=update.message.chat_id, text="Thank you for your message, it will be answered any time soon.")
+        bot.send_message(chat_id=update.message.chat_id, text="Thank you for your score. It will be added to the system soon.")
 
 def photo_upd(bot, update):
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
-        bot.send_message(chat_id=update.message.chat_id, text="Thank you for your message, it will be answered any time soon.")
+        bot.send_message(chat_id=update.message.chat_id, text="Thank you for your score. It will be added to the system soon.")
     
-updater = Updater(token='897701785:AAGw54uyE4L2Zo3st1lJC11tRKDXwGbBQrY')
+updater = Updater(token='922359953:AAEBvc5uRRO7qMPD6CI8TgdtHHz-oev42uQ')
 dispatcher = updater.dispatcher
 
 echo2_handler = MessageHandler(Filters.photo, photo_upd)
