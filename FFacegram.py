@@ -10,7 +10,7 @@ def from_admin(update):
         return (update.message.from_user.id in admins_ids)
 
 def start(bot, update):
-        bot.send_message(chat_id=update.message.chat_id, text="Send your audio your want to add to the library or use the command /music to get a random track from it.")
+        bot.send_message(chat_id=update.message.chat_id, text="Send your audio you want to add to the library or use the command /music to get a random track from it.")
 
 def text_upd(bot, update):
         bot.forward_message(chat_id = 367989051, from_chat_id=update.message.chat_id, message_id=update.message.message_id)
